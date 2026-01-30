@@ -1,0 +1,98 @@
+/**
+ * 幕三：你的安心，由你決定
+ *
+ * - 安心指數示意出現
+ * - Google Maps 整合圖示
+ * - 強調「不替你判斷」的產品定位
+ * - 文案：導航交給 Google Maps，安心交給你自己
+ */
+
+import { m, useTransform, MotionValue } from 'framer-motion';
+
+interface Props {
+  scrollYProgress: MotionValue<number>;
+}
+
+export default function Act3({ scrollYProgress }: Props) {
+  const contentOpacity = useTransform(scrollYProgress, [0.68, 0.76], [0, 1]);
+  const contentY = useTransform(scrollYProgress, [0.68, 0.76], [30, 0]);
+
+  return (
+    <m.div
+      className="section-container relative z-10 flex flex-col items-center"
+      style={{ opacity: contentOpacity, y: contentY }}
+    >
+      {/* 安心指數示意 */}
+      <div className="flex items-center gap-4 mb-8">
+        {/* 模擬位置卡 */}
+        <div className="bg-white rounded-2xl shadow-lg border border-surface-200 p-5 w-64">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <p className="font-semibold text-surface-900 text-sm">信義區松壽路</p>
+              <p className="text-xs text-surface-400 mt-0.5">更新於 2 小時前</p>
+            </div>
+            <div className="score-badge bg-primary-100 text-primary-700">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2l2.39 4.84L17.3 7.8l-3.65 3.56.86 5.03L10 13.9l-4.51 2.5.86-5.03L2.7 7.8l4.91-.96L10 2z" />
+              </svg>
+              4.5
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {['商圈', '人多', '便利商店'].map((tag) => (
+              <span key={tag} className="tag-chip text-[10px]">
+                {tag}
+              </span>
+            ))}
+          </div>
+          {/* 安心指數量表 */}
+          <div className="mt-3 pt-3 border-t border-surface-100">
+            <div className="flex items-center justify-between text-[10px] text-surface-400 mb-1">
+              <span>安心指數</span>
+              <span>4.5 / 5</span>
+            </div>
+            <div className="h-1.5 bg-surface-100 rounded-full overflow-hidden">
+              <m.div
+                className="h-full bg-primary-500 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: '90%' }}
+                transition={{ duration: 1.2, ease: 'easeOut' }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 連接線 + Google Maps */}
+        <div className="hidden sm:flex flex-col items-center gap-2">
+          <div className="w-8 border-t-2 border-dashed border-surface-300" />
+          <div className="w-12 h-12 rounded-xl bg-white shadow border border-surface-200 flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34A853" />
+              <circle cx="12" cy="9" r="2.5" fill="white" />
+            </svg>
+          </div>
+          <span className="text-[10px] text-surface-400 text-center leading-tight">
+            導航交給
+            <br />
+            Google Maps
+          </span>
+        </div>
+      </div>
+
+      {/* 文案 */}
+      <div className="text-center max-w-lg">
+        <p className="text-xs font-bold text-primary-400 tracking-widest mb-3">ACT 03</p>
+        <h2 className="text-3xl sm:text-4xl font-bold text-surface-900 mb-4">
+          你的安心，由你決定
+        </h2>
+        <p className="text-lg text-surface-600 leading-relaxed">
+          安心地圖不替你判斷，只讓你看見。
+          <br />
+          導航交給 Google Maps，安全資訊交給安心地圖。
+          <br />
+          <span className="text-surface-400 text-base">所有決定權，都在你手上。</span>
+        </p>
+      </div>
+    </m.div>
+  );
+}

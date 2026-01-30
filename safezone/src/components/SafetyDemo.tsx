@@ -1,7 +1,7 @@
 /**
  * SafetyDemo — 不安指數互動展示
  * 展示 mock 地點資料與不安指數，讓使用者預覽產品體驗。
- * 實作 MIN_PUBLIC_REVIEWS 門檻：reviewCount < 10 時不顯示聚合星等。
+ * 實作 MIN_PUBLIC_REVIEWS 門檻：reviewCount < 10 時不顯示聚合指數。
  */
 
 import { useState } from 'react';
@@ -105,7 +105,7 @@ export default function SafetyDemo() {
                       </div>
                       <div className={`score-badge text-lg ${scoreColor(selected.avgStars)}`}>
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 2l2.39 4.84L17.3 7.8l-3.65 3.56.86 5.03L10 13.9l-4.51 2.5.86-5.03L2.7 7.8l4.91-.96L10 2z" />
+                          <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                         </svg>
                         {selected.avgStars}
                       </div>
@@ -160,7 +160,7 @@ export default function SafetyDemo() {
                     </p>
                   </>
                 ) : (
-                  /* ── 資料不足：不顯示聚合星等 ── */
+                  /* ── 資料不足：不顯示聚合指數 ── */
                   <>
                     <div className="flex items-start justify-between mb-4">
                       <div>
@@ -177,7 +177,7 @@ export default function SafetyDemo() {
                     {/* 說明 */}
                     <div className="bg-surface-50 rounded-xl p-4 mb-5 border border-surface-100">
                       <p className="text-sm text-surface-600 leading-relaxed">
-                        為降低誤判，未滿 {config.minPublicReviews} 則回報不顯示聚合星等。你可以查看每則回報內容。
+                        為降低誤判，未滿 {config.minPublicReviews} 則回報不顯示聚合指數。你可以查看每則回報內容。
                       </p>
                     </div>
 
@@ -208,17 +208,17 @@ export default function SafetyDemo() {
                             <span className="text-xs font-medium text-surface-600">{review.author}</span>
                             <span className="text-[10px] text-surface-400">{review.date}</span>
                           </div>
-                          <div className="flex items-center gap-0.5 mb-1.5">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <svg
-                                key={i}
-                                className={`w-3 h-3 ${i < review.stars ? 'text-warm-400' : 'text-surface-200'}`}
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M10 2l2.39 4.84L17.3 7.8l-3.65 3.56.86 5.03L10 13.9l-4.51 2.5.86-5.03L2.7 7.8l4.91-.96L10 2z" />
-                              </svg>
-                            ))}
+                          <div className="flex items-center gap-1.5 mb-1.5">
+                            <svg className="w-3 h-3 text-warm-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                            </svg>
+                            <div className="flex-1 h-1.5 bg-surface-100 rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-warm-400"
+                                style={{ width: `${(review.stars / 5) * 100}%` }}
+                              />
+                            </div>
+                            <span className="text-[10px] text-surface-400 shrink-0">{review.stars}/5</span>
                           </div>
                           <p className="text-xs text-surface-500">{review.text}</p>
                         </div>
@@ -239,7 +239,7 @@ export default function SafetyDemo() {
                     >
                       新增回報
                       <span className="block text-xs font-normal text-primary-500 mt-0.5">
-                        再 {config.minPublicReviews - selected.reviewCount} 則就會公開顯示星等
+                        再 {config.minPublicReviews - selected.reviewCount} 則就會公開顯示不安指數
                       </span>
                     </a>
                   </>

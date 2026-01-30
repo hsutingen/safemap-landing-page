@@ -12,7 +12,7 @@ export const config = {
   hero: {
     headline: '走每一條路，都更安心一點',
     subheadline:
-      '安心地圖不是導航，而是把安全資訊，放進你每天在用的地圖裡。',
+      '安心地圖整合 Google Maps 導航，讓你在導航的同時，也能看見路段的安全資訊。',
     cta: '加入早期使用者',
     ctaSecondary: '往下探索',
   },
@@ -20,19 +20,18 @@ export const config = {
   /* ── 產品定位聲明 ── */
   positioning: {
     oneLiner:
-      '安心地圖不是導航，而是把安全資訊，放進你每天在用的地圖裡。',
+      '安心地圖整合 Google Maps 導航，讓你在導航的同時，也能看見路段的安全資訊。',
     noteDo: [
-      '提供路段 / 地點的安心指數',
+      '提供路段 / 地點的不安指數',
+      '內建 Google Maps 導航功能',
       '標示風險事件或社會危害新聞的地點',
       '讓社群共同回報與更新安全資訊',
     ],
     noteDoNot: [
-      '不做導航',
-      '不推薦路線',
-      '不計算最佳路線',
+      '不推薦「最安全路線」——路線由 Google Maps 計算',
       '不替你做安全判斷——所有決定權在你手上',
     ],
-    navigationNote: '導航交給 Google Maps，安全資訊交給安心地圖。',
+    navigationNote: '導航 + 安全資訊，一個 App 全部搞定。',
   },
 
   /* ── 可分享文字 ── */
@@ -58,8 +57,11 @@ export const config = {
   /* ── 功能開關 ── */
   showEmailField: true,
 
-  /* ── 安心指數量表 ── */
+  /* ── 不安指數量表 ── */
   safetyScoreScale: { min: 1, max: 5 },
+
+  /* ── 最低公開顯示回報數 ── */
+  minPublicReviews: 10,
 
   /* ── 動效預設 ── */
   reducedMotionDefault: false,

@@ -64,7 +64,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-surface-500">
           <p>&copy; {new Date().getFullYear()} {config.productName}. All rights reserved.</p>
           <p>
-            安心地圖僅提供安全資訊參考，不做導航、不做路線建議、不替使用者做判斷。
+            安心地圖僅提供安全資訊參考，不推薦最安全路線、不替使用者做安全判斷。
           </p>
         </div>
       </div>

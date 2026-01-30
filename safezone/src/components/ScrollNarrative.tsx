@@ -56,7 +56,7 @@ export default function ScrollNarrative() {
           <ReducedAct
             num="03"
             title="你的安心，由你決定"
-            desc="安心地圖不替你判斷，只讓你看見。導航交給 Google Maps，安心交給你自己。"
+            desc="安心地圖不替你判斷，只讓你看見。導航與安全資訊，在安心地圖裡一次搞定。"
           />
         </div>
       </section>
